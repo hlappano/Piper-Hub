@@ -647,5 +647,7 @@ def piper_tts():
 
 if __name__ == '__main__':
     logging.info("Starting Piper Hub Web Server")
+    os.makedirs(VOICES_PATH, exist_ok=True)
+    os.makedirs(AUDIO_PATH, exist_ok=True)
     voice_catalog = get_voices_catalog()
     app.run(host='0.0.0.0', port=5000, debug=False)

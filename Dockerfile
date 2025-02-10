@@ -11,10 +11,6 @@ COPY requirements.txt .
 # Install the dependencies and upgrade them if needed
 RUN pip install --upgrade pip && pip install -U -r requirements.txt
 
-# Make Models Directory
-RUN mkdir -p /app/data/voices
-RUN mkdir -p /app/data/audio
-
 # Create user permissions
 RUN useradd -m -u 1000 app
 
@@ -33,6 +29,9 @@ RUN arch=$(uname -m) && \
 
 # Copy the app code
 COPY --chown=app:app . .
+
+# Set permission
+RUN chown -R app:app .
 
 # Exposing Port 5000
 EXPOSE 5000
