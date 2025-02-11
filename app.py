@@ -35,6 +35,7 @@ VOICES_JSON_FILE_PATH=os.path.join(DATA_PATH, "voices.json")
 DOWNLOAD_VOICE_URL="https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0"#en/en_US/amy/low/en_US-amy-low.onnx?download=true"
 
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
