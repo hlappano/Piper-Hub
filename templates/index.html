@@ -1,201 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='imgs/favicon.ico') }}" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="../static/imgs/favicon.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Piper Hub</title>
   <!-- Local Bootstrap CSS -->
-  <!-- <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet"> -->
-   <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-
-    body {
-      padding-top: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-    }
-
-    body header h1 {
-      font-weight: bold;
-    }
-
-    textarea {
-      width: 100%;
-      max-width: 100%; /* Ensure it doesn't overflow on smaller screens */
-      font-size: 0.9rem; /* Slightly smaller text on mobile */
-    }
-
-    .tab,
-    .moble_tab {
-      display: inline-block;
-      margin-left: 30px;
-    }
-
-    summary {
-      font-weight: bold;
-    }
-
-    #TTS-button,
-    #upload-button {
-      background-color: #05c7bd;
-      border-color: #036c67;
-      color: black;
-    }
-
-    #TTS-button:hover,
-    #upload-button:hover {
-      background-color: #036c67;
-      border-color: #036c67;
-    }
-
-    #install-btn {
-      background-color: #4CAF50;
-      border-color: #337635;
-      color: white;
-    }
-
-    #uninstall-btn {
-      background-color: rgb(175, 76, 76);
-      border-color: #763333;
-      color: white;
-    }
-
-    #ssml-examples {
-      width: 100%;
-      border: 1px solid #888;
-    }
-
-    #ssml-examples tr {
-       border-top: 1px solid #888;
-    }
-
-    #ssm-examples td {
-      padding: 5px;
-    }
-
-    .scrollable-table {
-      max-height: 400px; /* Limit table height */
-      overflow-y: auto;  /* Enable vertical scrolling */
-      display: block;    /* Make the table scrollable */
-      overflow-x: auto;  /* Enable horizontal scrolling */
-      -webkit-overflow-scrolling: touch; /* For smoother scrolling on mobile */
-    }
-
-    table {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      border: 2px solid #fb9401;
-      border-collapse: separate; /* Don't collapse */
-    }
-
-    thead {
-      position: -webkit-sticky;
-      position: -moz-sticky;
-      position: -ms-sticky;
-      position: -o-sticky;
-      position: sticky;
-      top: 0;  /* Keeps the header at the top when scrolling */
-      background-color: #05c7bd; /* Set a background color to make sure the header stands out */
-      z-index: 1; /* Ensure the header is above the table rows */
-      border: 3px solid #fba120;
-    }
-
-    #lang-filter,
-    #voice-selector,
-    #speaker-selector {
-      width: 200px;
-    }
-
-    .mobile-col_marg {
-      margin-left: 15px;
-    }
-
-    .ccenter {
-      text-align: left;
-    }
-
-    .container {
-      background-color: #fff;
-    }
-
-    .install-col {
-      width: 125px;
-    }
-
-    details {
-      background-color: white;
-      padding: 5px;
-    }
-
-    .table th, .table td {
-      border: 1px solid #506c88;
-    }
-
-    @media (min-width: 992px) {
-      body {
-        padding-top: 0;
-      }
-      .container {
-        max-width: 900px;
-        width: 100vw;        
-        padding: 3vw;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .ccenter {        
-        text-align: center;
-      }
-
-      textarea {
-        width: 75%; /* Full width for responsiveness */
-        max-width: 600px; /* Limit width for larger screens */
-        padding: 0.5rem;
-        font-size: 1rem;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-      }
-
-      table th:nth-child(5), 
-      table td:nth-child(5) {
-        width: 150px; /* Adjust this to the desired width */
-        text-align: center; /* Optional: Center align text inside cells */
-      }
-
-      .tab {
-        display: inline-block;
-        margin-left: 100px;
-      }
-
-      .moble_tab {
-        width: 0px;
-      }
-
-      .mobile-col_marg {
-        margin-left: 0px;
-      }
-    }
-
-    /* Media query for small screens (max-width: 768px) */
-    @media (max-width: 768px) {
-      .table th, .table td {
-        font-size: 0.8rem; /* Shrink font size */
-        padding: 6px; /* Reduce padding */
-      }
-
-      /* Optionally, make the table more compact by scaling it down */
-      .table {
-        transform: scale(0.68); /* Shrink the entire table */
-        transform-origin: top left;
-      }
-
-      .table-header {
-        font-size: 1rem; 
-      }
-    }
-  </style>
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Link to your custom CSS -->
+  <link rel="stylesheet" href="../static/css/piperstyle.css">
   <script>
     /********************************************************
      * 
@@ -912,7 +725,6 @@
     <!--Header-->
     <header style="text-align: center; margin-top: 5px;">
       <div class="row" style="justify-content: center;" >
-        <!-- <img src="{{ url_for('static', filename='imgs/piper_web_logo.png') }}" width="150"/> -->
         <img src="../static/imgs/piper_web_logo.png" width="150"/>
         <h1 style="align-content: center;">Piper Hub</h1>
       </div> 
@@ -965,71 +777,72 @@
     <br/>
     <details class="mt-3">
       <summary>Advanced Settings</summary>
-        <div class="row mt-2">
-          <div class="col-3">
-            <label for="auto-play" title="Auto Play Setting">Auto Play:</label>
-            <input type="checkbox" id="auto-play" name="autoplay" checked="true">
+        <div id="advance-settings">
+          <div class="row mt-2 indent">
+            <div class="col-3-auto">
+              <label for="auto-play" title="Auto Play Setting">Auto Play:</label>
+              <input type="checkbox" class="form-control" id="auto-play" name="autoplay" checked="true">
+            </div>
+            <div class="col">
+              <details>
+                <summary>More about auto play</summary>
+                <p>
+                  Flag to have the audio play automatically after Synthesizing.
+                </p>
+              </details>
+            </div>
           </div>
-          <div class="col">
-            <details>
-              <summary>More about auto play</summary>
-              <p>
-                Flag to have the audio play automatically after Synthesizing.
-              </p>
-            </details>
+          <div class="row mt-2 indent">
+              <div class="col-3-auto">
+                  <label for="length-scale" title="VITS length scale (< 1 is faster)">Speaking Rate:</label>
+                  <input type="number" class="form-control" id="length-scale" name="lengthScale" size="5" min="0" max="10" step="0.001" value="1">
+              </div>
+              <div class="col">
+                <details>
+                  <summary>More about speaking rate</summary>
+                  <p>
+                    Controls how fast the voice speaks the text. A value of 1 is the speed of the training dataset. Less than 1 is faster, and more than 1 is slower.
+                  </p>
+                </details>
+              </div>
           </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <label for="length-scale" title="VITS length scale (< 1 is faster)">Speaking Rate:</label>
-                <input type="number" id="length-scale" name="lengthScale" size="5" min="0" max="10" step="0.001" value="1">
-            </div>
-            <div class="col">
-              <details>
-                <summary>More about speaking rate</summary>
-                <p>
-                  Controls how fast the voice speaks the text. A value of 1 is the speed of the training dataset. Less than 1 is faster, and more than 1 is slower.
-                </p>
-              </details>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <label for="noise-scale" title="VITS noise parameter (0-1)">Audio Volatility:</label>
-                <input type="number" id="noise-scale" name="noiseScale" size="5" min="0" max="1" step="0.001" value="0.667">
-            </div>
-            <div class="col">
-              <details>
-                <summary>More about audio volatility</summary>
-                <p>
-                  The amount of noise added to the generated audio (0-1). Can help mask audio artifacts from the voice model. Multi-speaker models tend to sound better with a lower amount of noise than single speaker models.
-                </p>
-              </details>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <label for="noise-w" title="VITS noise W parameter (0-1)">Phoneme Volatility:</label>
-                <input type="number" id="noise-w" name="noiseW" size="5" min="0" max="1" step="0.001" value="0.8">
-            </div>
-            <div class="col">
-              <details>
-                <summary>More about phoneme volatility</summary>
-                <p>
-                  The amount of noise used to generate phoneme durations (0-1). Allows for variable speaking cadance, with a value closer to 1 being more variable. Multi-speaker models tend to sound better with a lower amount of phoneme variability than single speaker models.
-                </p>
-              </details>
-            </div>
+          <div class="row mt-2 indent">
+              <div class="col-3-auto">
+                  <label for="noise-scale" title="VITS noise parameter (0-1)">Audio Volatility:</label>
+                  <input type="number" class="form-control" id="noise-scale" name="noiseScale" size="5" min="0" max="1" step="0.001" value="0.667">
+              </div>
+              <div class="col">
+                <details>
+                  <summary>More about audio volatility</summary>
+                  <p>
+                    The amount of noise added to the generated audio (0-1). Can help mask audio artifacts from the voice model. Multi-speaker models tend to sound better with a lower amount of noise than single speaker models.
+                  </p>
+                </details>
+              </div>
+          </div>
+          <div class="row mt-2 indent">
+              <div class="col-3-auto">
+                  <label for="noise-w" title="VITS noise W parameter (0-1)">Phoneme Volatility:</label>
+                  <input type="number" class="form-control" id="noise-w" name="noiseW" size="5" min="0" max="1" step="0.001" value="0.8">
+              </div>
+              <div class="col">
+                <details>
+                  <summary>More about phoneme volatility</summary>
+                  <p>
+                    The amount of noise used to generate phoneme durations (0-1). Allows for variable speaking cadance, with a value closer to 1 being more variable. Multi-speaker models tend to sound better with a lower amount of phoneme variability than single speaker models.
+                  </p>
+                </details>
+              </div>
+          </div>
         </div>
     </details>
     <details class="mt-3">
       <summary>Upload a Voice</summary>
       <form id="upload-voice-form" enctype="multipart/form-data">
-        
-        <div class="row mt-2">
-          <div class="col-3">
+        <div class="row mt-2 indent">
+          <div class="col-3-auto">
             <label for="json-file">JSON File (Required):</label>
-            <input type="file" id="json-file" name="json_file" accept=".onnx.json" required>
+            <input type="file" class="form-control" id="json-file" name="json_file" accept=".onnx.json" required>
           </div>
           <div class="col">
             <details>
@@ -1040,10 +853,10 @@
             </details>
           </div>
         </div>
-        <div class ="row mt-2">
-          <div class="col-3">
+        <div class ="row mt-2 indent">
+          <div class="col-3-auto">
             <label for="onnx-file">ONNX File (Required):</label>
-            <input type="file" id="onnx-file" name="onnx_file" accept=".onnx" required>
+            <input type="file" class="form-control" id="onnx-file" name="onnx_file" accept=".onnx" required>
           </div>
           <div class="col">
             <details>
@@ -1055,10 +868,10 @@
             </details>
           </div>
         </div>
-        <div class="row mt-2">
-          <div class="col-3">
+        <div class="row mt-2 indent">
+          <div class="col-3-auto">
             <label for="model-card-file">Model Card (Optional):</label>
-            <input type="file" id="model-card-file" name="model_card" accept="*">
+            <input type="file" class="form-control" id="model-card-file" name="model_card" accept="*">
           </div>
           <div class="col">
             <details>
@@ -1071,10 +884,10 @@
             </details>
           </div>
         </div>
-        <div class="row mt-2">
-          <div class="col-3">
+        <div class="row mt-2 indent">
+          <div class="col-3-auto">
             <label for = "override-upload-voice-name">Override Name (Optional):</label>
-            <input type="text" id="override-upload-voice-name" name="override-upload-voice-name">
+            <input type="text" class="form-control" id="override-upload-voice-name" name="override-upload-voice-name">
           </div>
           <div class="col">
             <details>
@@ -1087,15 +900,12 @@
           </div>
         </div>
         <br>
-        <button type="button" id="upload-button">Upload Voice</button>
+        <button class="indent" type="button" id="upload-button">Upload Voice</button>
       </form>
     </details>
-
     <br/>
     <br/>
-
     <!-- Tables -->
-    
     <div class ="row mt-3 mobile-col_marg">
       <label for="lang-filter-tables" title="Lang Filter">Tables Language Filter:</label>
       <select id="lang-filter-tables" style="margin-left: 10px" name="lang-filter-tables">
@@ -1160,6 +970,24 @@
         </table>
       </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="ccenter">
+      <hr class="mt-5" />
+      <div class="row mt-3 justify-content-center">
+        <a href="https://raw.githubusercontent.com/hlappano/Piper-Hub/refs/heads/main/LICENSE" title="MIT">License</a>
+        &nbsp;
+        &bull;
+        &nbsp;
+        <a href="https://github.com/hlappano">Author</a>
+        &nbsp;
+        &bull;
+        &nbsp;
+        <a href="https://github.com/hlappano/Piper-Hub/issues">Issues</a>
+      </div>
+      <br>
+    </footer>
   </div>
+  
 </body>
 </html>

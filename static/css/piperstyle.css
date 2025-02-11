@@ -1,0 +1,199 @@
+    body {
+        padding-top: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    body header h1 {
+        font-weight: bold;
+    }
+
+    textarea {
+        width: 100%;
+        max-width: 100%; /* Ensure it doesn't overflow on smaller screens */
+        font-size: 0.9rem; /* Slightly smaller text on mobile */
+    }
+
+    .tab,
+    .moble_tab {
+        display: inline-block;
+        margin-left: 30px;
+    }
+
+    summary {
+        font-weight: bold;
+    }
+
+    #TTS-button,
+    #upload-button {
+        background-color: #05c7bd;
+        border-color: #036c67;
+        color: black;
+    }
+
+    #TTS-button:hover,
+    #upload-button:hover {
+        background-color: #036c67;
+        border-color: #036c67;
+    }
+
+    #install-btn {
+        background-color: #4CAF50;
+        border-color: #337635;
+        color: white;
+    }
+
+    #uninstall-btn {
+        background-color: rgb(175, 76, 76);
+        border-color: #763333;
+        color: white;
+    }
+
+    #ssml-examples {
+        width: 100%;
+        border: 1px solid #888;
+    }
+
+    #ssml-examples tr {
+        border-top: 1px solid #888;
+    }
+
+    #ssm-examples td {
+        padding: 5px;
+    }
+
+    .scrollable-table {
+        max-height: 400px; /* Limit table height */
+        overflow-y: auto;  /* Enable vertical scrolling */
+        display: block;    /* Make the table scrollable */
+        overflow-x: auto;  /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* For smoother scrolling on mobile */
+    }
+
+    table {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        border: 2px solid #fb9401;
+        border-collapse: separate; /* Don't collapse */
+    }
+
+    thead {
+        position: -webkit-sticky;
+        position: -moz-sticky;
+        position: -ms-sticky;
+        position: -o-sticky;
+        position: sticky;
+        top: 0;  /* Keeps the header at the top when scrolling */
+        background-color: #05c7bd; /* Set a background color to make sure the header stands out */
+        z-index: 1; /* Ensure the header is above the table rows */
+        border: 3px solid #fba120;
+    }
+
+    #lang-filter,
+    #voice-selector,
+    #speaker-selector {
+        width: 200px;
+    }
+
+    .mobile-col_marg {
+        margin-left: 15px;
+    }
+
+    .ccenter {
+        text-align: left;
+    }
+
+    .container {
+        background-color: #fff;
+    }
+
+    .install-col {
+        width: 125px;
+    }
+
+    details {
+        background-color: white;
+        padding: 5px;
+    }
+
+    .table th, .table td {
+        border: 1px solid #506c88;
+    }
+
+    .indent {
+        margin-left: .5rem;
+    }
+
+    #upload-voice-form .col-3-auto,
+    #advance-settings .col-3-auto {
+        width: 90%;
+    }
+
+    @media (min-width: 992px) {
+        body {
+            padding-top: 0;
+        }
+        .container {
+            max-width: 900px;
+            width: 100vw;        
+            padding: 3vw;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ccenter {
+            text-align: center;
+        }
+
+        textarea {
+            width: 75%; /* Full width for responsiveness */
+            max-width: 600px; /* Limit width for larger screens */
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        table th:nth-child(5),
+        table td:nth-child(5) {
+            width: 150px; /* Adjust this to the desired width */
+            text-align: center; /* Optional: Center align text inside cells */
+        }
+
+        .tab {
+            display: inline-block;
+            margin-left: 100px;
+        }
+
+        .moble_tab {
+            width: 0px;
+        }
+
+        .mobile-col_marg {
+            margin-left: 0px;
+        }
+
+        #upload-voice-form .col-3-auto,
+        #advance-settings .col-3-auto {
+            width: 50%;
+        }
+    }
+
+    /* Media query for small screens (max-width: 768px) */
+    @media (max-width: 768px) {
+        .table th, .table td {
+            font-size: 0.8rem; /* Shrink font size */
+            padding: 6px; /* Reduce padding */
+        }
+
+        /* Optionally, make the table more compact by scaling it down */
+        .table {
+            transform: scale(0.68); /* Shrink the entire table */
+            transform-origin: top left;
+        }
+
+        .table-header {
+            font-size: 1rem; 
+        }
+    }
