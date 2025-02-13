@@ -38,5 +38,5 @@ jobs:
                     push: true
                     platforms: linux/amd64,linux/arm64
                     tags: |
-                        yourdockerhubuser/yourrepo:latest
-                        yourdockerhubuser/yourrepo:${{ env.VERSION }}
+                        hlappano/piper-hub:latest
+                        hlappano/piper-hub:${{ env.VERSION }}
