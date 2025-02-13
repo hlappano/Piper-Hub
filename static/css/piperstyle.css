@@ -12,6 +12,12 @@
         font-weight: bold;
     }
 
+    #version {
+        font-weight: bold;
+        font-size: .7rem;
+        align-items: end;
+    }
+
     textarea {
         width: 100%;
         max-width: 100%; /* Ensure it doesn't overflow on smaller screens */

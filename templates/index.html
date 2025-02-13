@@ -142,7 +142,27 @@
     /**
      * Initialize Page
      */
-     function initializePage() {
+    function initializePage() {
+      // Set the Version Number
+      setVersion();
+
+      // Get Voice Data
+      getVoiceData();
+    }
+
+    function setVersion() {
+      // Fetching Version
+      fetch('/static/version.json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("version").textContent = data.version;
+      })
+      .catch(error => { 
+        document.getElementById("version").textContent = "Version Unknown"
+      });
+    }
+
+    function getVoiceData() {
       fetch('/get_voice_data')
       .then(response => response.json())
       .then(data => {
@@ -733,8 +753,13 @@
     <header style="text-align: center; margin-top: 5px;">
       <div class="row" style="justify-content: center;" >
         <img src="../static/imgs/piper_web_logo.png" width="150"/>
-        <h1 style="align-content: center;">Piper Hub</h1>
-      </div> 
+          <h1 style="align-content: center;">
+            Piper Hub
+          </h1>
+          <label class="row" id="version">
+            version
+          </label>
+      </div>
     </header>
 
     <!-- TTS Form-->
