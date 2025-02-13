@@ -72,14 +72,13 @@
         display: block;    /* Make the table scrollable */
         overflow-x: auto;  /* Enable horizontal scrolling */
         -webkit-overflow-scrolling: touch; /* For smoother scrolling on mobile */
+        border: 2px solid #fb9401;
     }
 
     table {
         width: 100%;
         max-width: 800px;
         margin: 0 auto;
-        border: 2px solid #fb9401;
-        border-collapse: separate; /* Don't collapse */
     }
 
     thead {
@@ -91,7 +90,6 @@
         top: 0;  /* Keeps the header at the top when scrolling */
         background-color: #05c7bd; /* Set a background color to make sure the header stands out */
         z-index: 1; /* Ensure the header is above the table rows */
-        border: 3px solid #fba120;
     }
 
     #lang-filter,
