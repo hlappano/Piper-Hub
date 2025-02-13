@@ -293,6 +293,13 @@
         uninstallButton.style.color = cacheColor;
         alert(error);
       }
+      finally {
+        // Reset Button
+        uninstallButton.disable = false;
+        uninstallButton.textContent = cacheTextContent;
+        uninstallButton.style.backgroundColor = cacheBackgroundColor;
+        uninstallButton.style.color = cacheColor;
+      }
     }
 
     /**
