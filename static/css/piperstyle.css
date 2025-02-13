@@ -4,6 +4,10 @@
         background-color: #f4f4f4;
     }
 
+    footer {
+        background-color: #fff;
+    }
+
     body header h1 {
         font-weight: bold;
     }
@@ -123,17 +127,33 @@
 
     .indent {
         margin-left: .5rem;
+        margin-right: .5rem;
     }
 
     #upload-voice-form .col-3-auto,
     #advance-settings .col-3-auto {
-        width: 90%;
+        width: 100%;
+        display: grid;
+        justify-content: left;
+    }
+
+    #advance-settings label {
+        min-width: 8.7rem;
     }
 
     @media (min-width: 992px) {
+
         body {
             padding-top: 0;
         }
+
+        footer {
+            position: -webkit-sticky;
+            position: sticky;
+            bottom: 0;
+            z-index: 2;
+        }
+
         .container {
             max-width: 900px;
             width: 100vw;        
@@ -182,18 +202,29 @@
 
     /* Media query for small screens (max-width: 768px) */
     @media (max-width: 768px) {
+
+        .scrollable-table {
+            max-height: 13rem;
+        }
+
         .table th, .table td {
-            font-size: 0.8rem; /* Shrink font size */
+            font-size: xx-small;
             padding: 6px; /* Reduce padding */
+            overflow-wrap: break-word;;
         }
 
         /* Optionally, make the table more compact by scaling it down */
         .table {
-            transform: scale(0.68); /* Shrink the entire table */
-            transform-origin: top left;
-        }
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        } 
 
         .table-header {
             font-size: 1rem; 
+        }
+
+        .install-col {
+            width: auto;
         }
     }
