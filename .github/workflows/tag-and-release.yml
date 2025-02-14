@@ -59,7 +59,7 @@ jobs:
           else
             logs=$(git log $previous_tag..HEAD --pretty=format:'- %s')
           fi
-          echo "release_notes=$logs" >> $GITHUB_ENV
+          echo "$logs" > release_notes.txt
 
       - name: Create and push new tag
         run: |
@@ -72,4 +72,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_ACTION_TOKEN }}
         run: |
-          gh release create ${{ env.new_tag }} --notes "${{ env.release_notes }}"
+          gh release create ${{ env.new_tag }} --notes-file release_notes.txt
