@@ -205,6 +205,7 @@
         updateData(data);
       })
       .catch(error => {
+        alert(`Error: ${error.message}`);
         console.error("Error: " + error + " in Fetch /get_voice_data!");
       });
     }
@@ -249,8 +250,8 @@
         }
         else {
           const data = await response.json();
-          let msg = "Response Code: " + response.status + " - " + response.statusText + "\n" + data.message;
-          throw msg;
+          let msg = response.status + "\nMessage: " + data.message;
+          throw Error(msg);
         }
       }
       catch (error) {
@@ -259,7 +260,7 @@
         installButton.textContent = cacheTextContent;
         installButton.style.backgroundColor = cacheBackgroundColor;
         installButton.style.color = cacheColor;
-        alert(error);
+        alert(`Error: ${error.message}`);
       }
     }
 
@@ -301,8 +302,8 @@
         }
         else {
           const data = await response.json();
-          let msg = "Response Code: " + response.status + " - " + response.statusText + "\n" + data.message;
-          throw msg;
+          let msg = response.status + "\nMessage: " + data.message;
+          throw Error(msg);
         }
       }
       catch (error) {
@@ -311,7 +312,7 @@
         uninstallButton.textContent = cacheTextContent;
         uninstallButton.style.backgroundColor = cacheBackgroundColor;
         uninstallButton.style.color = cacheColor;
-        alert(error);
+        alert(`Error: ${error.message}`);
       }
       finally {
         // Reset Button
@@ -394,11 +395,11 @@
         }
         else {
           const data = await response.json();
-          let msg = "Response Code: " + response.status + " - " + response.statusText + "\n" + data.message;
-          throw msg;
+          let msg = response.status + "\nMessage: " + data.message;
+          throw Error(msg);
         }
       } catch (error) {
-        alert(error);
+          alert(`Error: ${error.message}`);
       } finally {
         // reset generate button
         generateButton.disable = false;
@@ -462,11 +463,11 @@
         }
         else {
           const data = await response.json();
-          let msg = "Response Code: " + response.status + " - " + response.statusText + "\n" + data.message;
-          throw msg;
+          let msg = response.status + "\nMessage: " + data.message;
+          throw Error(msg);
         }
       } catch (error) {
-          alert(error);
+          alert(`Error: ${error.message}`);
       } finally {
         // reset button
         uploadButton.disable = false;
@@ -544,8 +545,8 @@
         }
         else {
           const data = await response.json();
-          let msg = "Response Msg: " + data.message;
-          throw msg;
+          let msg = response.status + "\nMessage: " + data.message;
+          throw Error(msg);
         }
       }
       catch (error) {

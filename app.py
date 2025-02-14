@@ -382,7 +382,7 @@ def install_voice():
                 "message": f"{voice_key} voice installed successfully!"
             }), 201
         else:
-            return jsonify({"message": f"Error voice_key: {voice_key} not valid!"}), 404
+            return jsonify({"message": f"voice_key: {voice_key} not valid!"}), 404
     except Exception as e:
         return jsonify({"message": f"Error during voice install: {e}"}), 500
 
@@ -519,7 +519,7 @@ def upload_voice():
                 json.dump(voice_catalog, file, indent = 4)
         else:
             return jsonify({
-                "message": f"Error: Voice key '{voice_key}', already exists in catalog for downloading, no need to upload. \
+                "message": f"Voice key '{voice_key}', already exists in catalog for downloading, no need to upload. \
                 \nVerify that the Dataset: '{dataset_name}' in the .onnx.json is correct it could be a duplicate. If not, use name override."
                 }), 400
 
@@ -581,7 +581,7 @@ def uninstall_voice():
                 "message": f"{voice_key} voice uninstalled successfully!"
             })
         else:
-            return jsonify({"message": f"Error voice_key: {voice_key} not valid!"}), 404
+            return jsonify({"message": f"voice_key: {voice_key} not valid!"}), 404
     except Exception as e:
         return jsonify({"message": f"Error during voice uninstall: {str(e)}"}), 500
 
@@ -622,11 +622,11 @@ def get_model_card():
                         model_card = file.read()
                     return jsonify({"model_card": model_card})
                 else:
-                    return jsonify({"message": f"Error: Model Card not found for {voice_key}"}), 404
+                    return jsonify({"message": f"Model Card not found for {voice_key}"}), 404
             else:
-                return jsonify({"message": f"Error: Voice Key '{voice_key}' not found in catalog"}), 404
+                return jsonify({"message": f"Voice Key '{voice_key}' not found in catalog"}), 404
         else:
-            return jsonify({"message": f"Error: voice_key: {voice_key} not valid!"}), 404
+            return jsonify({"message": f"voice_key: {voice_key} not valid!"}), 404
     except Exception as e:
         return jsonify({"message": f"Error during model card retrieval: {e}"}), 500
 
@@ -653,10 +653,10 @@ def piper_tts():
             phoneme_volatility = request.form['phoneme_volatility']
     except KeyError as e:
         logging.error(f"Missing required form key: {e}")
-        return jsonify({"error": f"Missing required key: {e}"}), 400
+        return jsonify({"message": f"Missing required key: {e}"}), 400
     except Exception as e:
         logging.error(f"Error parsing request: {e}")
-        return jsonify({"error": "Invalid request format"}), 400
+        return jsonify({"message": "Invalid request format"}), 400
 
     # Call piper
     output_file = piper(text, model, speaker_id, speaker_rate, audio_volatility, phoneme_volatility)
