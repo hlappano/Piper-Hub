@@ -1,0 +1,75 @@
+name: Manual Tag and Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g., 1.2.3). Leave empty to auto-increment.'
+        required: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get latest tag
+        id: latest_tag
+        run: echo "tag=$(git describe --tags --abbrev=0 || echo 0.0.0)" >> $GITHUB_ENV
+
+      - name: Calculate new version if needed
+        id: new_version
+        run: |
+          if [ -z "${{ github.event.inputs.version }}" ]; then
+            latest="${{ env.tag }}"
+            major=$(echo "$latest" | cut -d. -f1)
+            minor=$(echo "$latest" | cut -d. -f2)
+            patch=$(echo "$latest" | cut -d. -f3)
+            patch=$((patch + 1))
+            new_tag="v$major.$minor.$patch"
+          else
+            new_tag="v${{ github.event.inputs.version }}"
+          fi
+          echo "new_tag=$new_tag" >> $GITHUB_ENV
+
+      - name: Update and Push version.json
+        run: |
+          cat <<EOF> static/version.json
+          {
+            "version": "${{ env.new_tag }}"
+          }
+          EOF
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add static/version.json
+          git commit -m "Bump Version to ${{ env.new_tag }}"
+          git push origin main
+
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          previous_tag=${{ env.tag }}
+          new_tag=${{ env.new_tag }}
+          if [ "$previous_tag" = "0.0.0" ]; then
+            logs=$(git log --pretty=format:'- %s')
+          else
+            logs=$(git log $previous_tag..HEAD --pretty=format:'- %s')
+          fi
+          echo "release_notes=$logs" >> $GITHUB_ENV
+
+      - name: Create and push new tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag -a ${{ env.new_tag }} -m "Release ${{ env.new_tag }}"
+          git push origin ${{ env.new_tag }}
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GH_ACTION_TOKEN }}
+        run: |
+          gh release create ${{ env.new_tag }} --notes "${{ env.release_notes }}"
