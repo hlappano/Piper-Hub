@@ -1,3 +1,8 @@
+# Copyright (c) 2025, Harleen Lappano
+# All rights reserved.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
 from flask import Flask, request, render_template, send_file, redirect, url_for, flash, jsonify, after_this_request
 import requests
 import json
@@ -591,6 +596,39 @@ def get_voice_data():
         "installed_voices": [voice.__dict__ for voice in installed_voices.values()],
         "available_voices": [voice.__dict__ for voice in available_voices.values()],
     })
+
+# Get Model Card Text - Post Message
+@app.route('/model_card', methods=["POST"])
+def get_model_card():
+    logging.info(f"Post Action for model card")
+
+    # Try catch wrapper
+    try:
+        # Get the voice key and check if valid
+        voice_key = request.json.get("voice_key")
+        if voice_key:
+            # Get voice model card
+            if voice_key in voice_catalog:
+                # Get the Model Card Data
+                # Getting Model Card Path
+                model_card_path = None
+                for file in voice_catalog[voice_key]["files"]:
+                    if file.endswith("MODEL_CARD"):
+                        model_card_path = os.path.join(VOICES_PATH, file)
+                        break
+                # Read Model Card Data and Return to Client
+                if model_card_path is not None:
+                    with open(model_card_path, "r") as file:
+                        model_card = file.read()
+                    return jsonify({"model_card": model_card})
+                else:
+                    return jsonify({"message": f"Error: Model Card not found for {voice_key}"}), 404
+            else:
+                return jsonify({"message": f"Error: Voice Key '{voice_key}' not found in catalog"}), 404
+        else:
+            return jsonify({"message": f"Error: voice_key: {voice_key} not valid!"}), 404
+    except Exception as e:
+        return jsonify({"message": f"Error during model card retrieval: {e}"}), 500
 
 # Piper TTS - Post Message
 @app.route('/piper_tts', methods=["POST"])

@@ -521,6 +521,46 @@
       updateTables();
     }
 
+    /**
+     * On Model Card - Fetches the Model Card Information
+     */
+    async function onModelCard(voiceKey) {
+      // Send Post to install voice with voiceKey
+      try {
+        const response = await fetch('/model_card', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ voice_key: voiceKey })
+        });
+
+        if(response.ok) {
+          const data = await response.json();
+          modelCardText = data.model_card;
+          document.getElementById('modelCardText').textContent = modelCardText;
+          document.getElementById('modelCardModal').style.display = 'flex';
+          document.body.classList.add('modal-open');
+        }
+        else {
+          const data = await response.json();
+          let msg = "Response Msg: " + data.message;
+          throw msg;
+        }
+      }
+      catch (error) {
+        alert(`Error: ${error.message}`);
+      }
+    }
+
+    /**
+     * On Close Model - Closes the Model Div
+     */
+    function onCloseModal() {
+        document.getElementById('modelCardModal').style.display = 'none';
+        document.body.classList.remove('modal-open');
+    }
+
     /********************************************************
      * 
      * Updates
@@ -684,7 +724,14 @@
           return; // Skip to the next iteration
         }
         let row = installedTable.insertRow();
-        row.innerHTML = `<td>${voice.name}</td><td>${voice.lang_name_english} (${voice.lang_country_english})</td><td>${voice.quality}</td><td>${voice.num_speakers}</td><td><button id="uninstall-btn" onclick="onUninstallVoiceClick('${voice.key}', event)">Uninstall</button></td>`;
+        row.innerHTML = `
+          <td onclick="onModelCard('${voice.key}')" style="cursor: pointer; text-decoration: underline; color: blue;">${voice.name}</td>
+          <td>${voice.lang_name_english} (${voice.lang_country_english})</td>
+          <td>${voice.quality}</td>
+          <td>${voice.num_speakers}</td>
+          <td><button id="uninstall-btn" onclick="onUninstallVoiceClick('${voice.key}', event)">Uninstall</button></td>
+        `;
+      
       });
 
       // Available Voices Table
@@ -696,7 +743,14 @@
           return; // Skip to the next iteration
         }
         let row = availableTable.insertRow();
-        row.innerHTML = `<td>${voice.name}</td><td>${voice.lang_name_english} (${voice.lang_country_english})</td><td>${voice.quality}</td><td>${voice.num_speakers}</td><td><button id="install-btn" onclick="onInstallVoiceClick('${voice.key}', event)">Install</button></td>`;
+        row.innerHTML = `
+          <td>${voice.key}</td>
+          <td>${voice.lang_name_english} (${voice.lang_country_english})</td>
+          <td>${voice.quality}</td>
+          <td>${voice.num_speakers}</td>
+          <td><button id="install-btn" onclick="onInstallVoiceClick('${voice.key}', event)">Install</button></td>
+        `;
+      
       });
     }
 
@@ -1002,7 +1056,6 @@
         </table>
       </div>
     </div>
-
     <!-- Footer -->
     <footer class="ccenter">
       <hr class="mt-5" />
@@ -1019,6 +1072,15 @@
       </div>
       <br>
     </footer>
+
+    <!-- Model Card Viewer -->
+    <div class="modal" id="modelCardModal">
+      <div class="modal-content">
+          <span class="close-btn" onclick="onCloseModal()">&times;</span>
+          <h3>Model Card</h3>
+          <pre id="modelCardText"></pre>
+      </div>
+    </div>
   </div>
 </body>
 </html>
