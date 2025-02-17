@@ -78,7 +78,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_ACTION_TOKEN }}
-          branch: ${{ env.new_tag}}
+          tags: true
 
       - name: Create GitHub release
         env:
