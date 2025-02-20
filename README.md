@@ -18,7 +18,7 @@ Steps:
 `` docker build -t piper-hub:dev .``
 **Note: 'dev' is just a made up tag, to tag this build.**
 3. Compose Image:
-``docker run -d --name piper-hub-container -p 5000:5000 piper-hub-image``
+``docker run -d --name piper-hub-container -p 5000:5000 piper-hub:dev``
     * Port can be adjusted to ``{your_preferred_port}:5000``
     * If you want to volume mount for develop, then add before ``piper-hub-image``
     ``-v ${pwd}:/app``
@@ -29,6 +29,17 @@ Steps:
 Formats:
 * arm64
 * amd64
+
+## Install and Run (non-docker)
+1. Install Python 3. Docker uses the python:3.13.2-bullseye.
+    a. Recommend using a python environment or conda environment.
+2. ``pip install --upgrade pip && pip install -U -r requirments.txt``
+3. Download and Install Piper
+    a. Go to https://github.com/rhasspy/piper/releases/tag/2023.11.14-2
+    b. Download appropriate piper architecture
+    c. extract in root repo. (tar -xzC ./)
+4. Run ``python3 app.py`` to start application
+5. Open web browser to http://localhost:5000
 
 ## License
 MIT License
