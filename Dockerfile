@@ -28,7 +28,11 @@ RUN arch=$(uname -m) && \
     curl -SL "${DOWNLOAD_URL}" | tar -xzC ./
 
 # Copy the app code
-COPY --chown=app:app . .
+COPY --chown=app:app *.py .
+COPY --chown=app:app ./static ./static
+COPY --chown=app:app ./templates ./templates
+COPY --chown=app:app ./LICENSE .
+RUN mkdir /app/data
 
 # Set permission
 RUN chown -R app:app .

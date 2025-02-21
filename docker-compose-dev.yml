@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: piper-hub:dev-env
+    volumes:
+      - ./data:/app/data
+      - ./static:/app/static
+      - ./templates:/app/templates
+      - ./app.py:/app/app.py
+      - ./consts.py:/app/consts.py
+      - ./piperhubfuncs.py:/app/piperhubfuncs.py
+      - ./routes.py:/app/routes.py
+      - ./voiceinfo.py:/app/voiceinfo.py
+    ports:
+      - "5000:5000"
+    container_name: piper-hub-dev-env
